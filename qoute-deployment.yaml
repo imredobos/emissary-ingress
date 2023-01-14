@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quote
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: quote
+  template:
+    metadata:
+      labels:
+        app: quote
+    spec:
+      containers:
+        - image: imredobos/quotes
+          imagePullPolicy: Always
+          name: backend
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP

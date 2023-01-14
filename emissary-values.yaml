@@ -1,0 +1,169 @@
+adminService:
+  annotations: {}
+  create: true
+  loadBalancerIP: null
+  loadBalancerSourceRanges: null
+  nodePort: null
+  port: 8877
+  snapshotPort: 8005
+  type: ClusterIP
+affinity: {}
+agent:
+  cloudConnectToken: ''
+  createArgoRBAC: true
+  enabled: true
+  image:
+    pullPolicy: IfNotPresent
+    repository: docker.io/ambassador/ambassador-agent
+    tag: 1.0.3
+  reportDiagnostics: true
+  rpcAddress: https://app.getambassador.io/
+ambassadorConfig: ''
+autoscaling:
+  enabled: false
+  maxReplicas: 5
+  metrics:
+    - resource:
+        name: memory
+        target:
+          averageUtilization: 100
+          type: Utilization
+      type: Resource
+    - resource:
+        name: cpu
+        target:
+          averageUtilization: 300
+          type: Utilization
+      type: Resource
+  minReplicas: 2
+barePod: false
+canary:
+  enabled: false
+  envRaw: {}
+  image:
+    repository: ''
+    tag: ''
+  mixPods: false
+  replicaCount: 0
+createDefaultListeners: false
+createNamespace: false
+daemonSet: false
+deploymentAnnotations: {}
+deploymentLabels: {}
+deploymentStrategy:
+  type: RollingUpdate
+deploymentTool: ''
+dnsPolicy: ClusterFirst
+docker: {}
+env: {}
+envRaw: {}
+fullnameOverride: ''
+hostNetwork: false
+image:
+  pullPolicy: IfNotPresent
+  repository: docker.io/emissaryingress/emissary
+  tag: 3.4.0
+imagePullSecrets: []
+ingressClassResource:
+  controllerValue: getambassador.io/ingress-controller
+  default: false
+  enabled: true
+  name: ambassador
+initContainers: []
+lifecycle: null
+livenessProbe:
+  failureThreshold: 3
+  initialDelaySeconds: 30
+  periodSeconds: 3
+metrics:
+  serviceMonitor:
+    enabled: false
+module:
+  diagnostics:
+    allow_non_local: true
+    enabled: false
+nameOverride: ''
+namespace:
+  name: null
+namespaceOverride: ''
+nodeSelector: {}
+podAnnotations: {}
+podDisruptionBudget: {}
+podLabels: {}
+priorityClassName: ''
+progressDeadlines:
+  agent: 600
+  ambassador: 600
+prometheusExporter:
+  enabled: false
+  pullPolicy: IfNotPresent
+  repository: prom/statsd-exporter
+  resources: {}
+  tag: v0.8.1
+rbac:
+  create: true
+  nameOverride: null
+  podSecurityPolicies: []
+readinessProbe:
+  failureThreshold: 3
+  initialDelaySeconds: 30
+  periodSeconds: 3
+replicaCount: 1
+resolvers:
+  consul:
+    create: false
+    name: consul-dc1
+    spec: {}
+  endpoint:
+    create: false
+    name: endpoint
+resources:
+  limits:
+    cpu: 1000m
+    memory: 600Mi
+  requests:
+    cpu: 200m
+    memory: 300Mi
+restartPolicy: null
+scope:
+  singleNamespace: false
+security:
+  containerSecurityContext:
+    allowPrivilegeEscalation: false
+  podSecurityContext:
+    runAsUser: 8888
+  podSecurityPolicy: {}
+service:
+  annotations: {}
+  externalIPs: []
+  externalTrafficPolicy: null
+  nameOverride: null
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+      hostPort: 80
+    - name: https
+      port: 443
+      targetPort: 8443
+      hostPort: 443
+  portsRaw: ''
+  sessionAffinity: null
+  sessionAffinityConfig: null
+  type: ClusterIP
+serviceAccount:
+  create: true
+  extra: ''
+  name: null
+sidecarContainers: []
+terminationGracePeriodSeconds: null
+test:
+  enabled: false
+  image: busybox
+tolerations: []
+topologySpreadConstraints: []
+volumeMounts: []
+volumes: []
+global:
+  cattle:
+    systemProjectId: p-gw4w2

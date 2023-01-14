@@ -1,0 +1,11 @@
+apiVersion: getambassador.io/v3alpha1
+kind: Listener
+metadata:
+  name: http
+spec:
+  hostBinding:
+    namespace:
+      from: ALL
+  port: 8080
+  protocol: HTTP
+  securityModel: XFP

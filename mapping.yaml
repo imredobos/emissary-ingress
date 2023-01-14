@@ -1,0 +1,9 @@
+apiVersion: getambassador.io/v2
+kind: Mapping
+metadata:
+  name: quote-backend
+spec:
+  hostname: '*'
+  prefix: '/'
+  resolver: service-resolver
+  service: quote
